@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/style.css">
+    <title>Monitor Size Calculator</title>
+</head>
+<body>
+    <div class="container">
+        <img src="imgs/logo.png" class="logo">
+        <h1>Monitor Size Calculator</h1>
+
+        <p class="description">
+            The monitor dimensions are usually not specified in the stores, and maybe you need them in order to fit it in your setup.
+        </p>
+        <p class="description">
+            This calculator allows you to know the width and height of a monitor in centimeters knowing its diagonal inches and resolution.
+        </p>
+
+        <section class="calc-form">
+            <div>Inches: <input id="inches" type="text" value="24"/></div>
+            <div>Resolution: <input type="text" id="width" value="1920"/> x <input type="text" id="height" value="1080"/></div>
+            <div class="button-container"><button id="calcButton" type="submit">Calculate</button></div>
+        </section>
+
+        <section>            
+            <canvas id="cnv"></canvas>
+        </section>
+
+        <section class="credits">
+            <p>Designed and developed by <a href="https://www.adrianmn.com">Adrián Moreno</a></p>
+        </section>
+    </div>
+
+    <script type="module" src="./src/index.js"></script>
+</body>
+</html>

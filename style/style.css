@@ -1,0 +1,70 @@
+h1 {		
+	font-weight: 700;
+	font-size: 32px;
+	margin-bottom: 3rem;
+}
+
+input {
+    border: none;
+    border-bottom: solid 2px #3c3c3c;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    color: #3c3c3c;
+    width: 3rem;
+    text-align: center;
+}
+
+button {        
+    padding: 1rem 1.5rem;
+    background: 0 0;
+    border: solid 2px #3c3c3c;    
+    font-family: "Times New Roman",Times,serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: .1rem;
+    cursor: pointer;    
+}
+
+button:hover {
+    background-color: #565656;
+    color: white;
+    border: 2px solid #565656;
+}
+
+.container {
+    margin: auto;
+    max-width: 600px;
+    text-align: center;
+    padding-top: 2rem;
+}
+
+.logo {
+    width: 50px;
+    margin-bottom: 1rem;
+}
+
+.description {    
+    margin-top: 2rem;
+    font-size: 20px;
+    font-style: italic;
+    line-height: 1.5;    
+    text-align: justify;
+}
+
+.calc-form {
+    text-align: justify;
+    margin-top: 2rem;
+}
+
+.calc-form div {
+    margin: 1rem 0;
+}
+
+.calc-form .button-container {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+#cnv {
+    margin-top: 1rem;
+}
