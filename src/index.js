@@ -1,20 +1,16 @@
 window.onload = init
 
-let lastFrameId = 0
-const animationDuration = 1000
-let lastTime = 0
-let elapsedtime = 0
-let num = 0
 let cnv
 let ctx
+let lastTime = 0
+let elapsedtime = 0
+const ANIM_DURATION = 1000
 
 function init() {
   const inputs = getNumInputs()
 
   document.getElementById('calcButton')
-    .addEventListener('click', () => calculateMonitorSize(inputs))
-
-  initCanvasAndContext()
+    .addEventListener('click', () => calculateMonitorSize(inputs))  
 }
 
 function getNumInputs() {
@@ -62,6 +58,8 @@ function initCanvasAndContext() {
 }
 
 function calculateMonitorSize(inputs) {
+  initCanvasAndContext()
+
   const inches = parseInt(inputs.inches.value)
   const widthPx = parseInt(inputs.width.value)
   const heightPx = parseInt(inputs.height.value)
@@ -80,56 +78,57 @@ function calculateSize(inches, widthPx, heightPx) {
   return { widthCms, heightCms, multiplier }
 }
 
-function loop(time, sizes) {
-  (!lastTime) && (lastTime = time)
-  const deltaTime = time - lastTime
+function loop(time, sizes) {  
+  if (lastTime == 0) {
+    lastTime = time
+  }
+
+  const deltaTime = time - lastTime  
   lastTime = time
-
   elapsedtime += deltaTime
-  let perc = elapsedtime / animationDuration
-
-  paintMonitor(sizes, perc)
-
+  const progress = elapsedtime / ANIM_DURATION
+  paintMonitor(sizes, progress)
+  
   const req = window.requestAnimationFrame(time => loop(time, sizes))
-
-  if (elapsedtime >= animationDuration) {
+  
+  if (elapsedtime >= ANIM_DURATION) {
     window.cancelAnimationFrame(req)
-    paintMonitor(sizes, perc)
+    paintMonitor(sizes, 1)
     elapsedtime = 0
     lastTime = 0
   }
 }
 
-function paintMonitor(sizes, perc) {
+function paintMonitor(sizes, progress) {
   ctx.clearRect(0, 0, cnv.width, cnv.height)
-  ctx.beginPath()
-  ctx.lineWidth = '2'
-  ctx.strokeStyle = '#3c3c3c'
-  const width = lerp(0, cnv.width * 0.8, perc)
-  const height = lerp(0, cnv.width * 0.8 / sizes.multiplier, perc)
 
+  const width = lerp(0, cnv.width * 0.8, progress)
+  const height = lerp(0, cnv.width * 0.8 / sizes.multiplier, progress)
+
+  ctx.beginPath()  
   ctx.rect(
     cnv.width / 2 - width / 2,
     2,
     width,
     height
   )
+  ctx.lineWidth = '2'
+  ctx.strokeStyle = '#3c3c3c'
   ctx.stroke()
+
+  const widthCm = lerp(0, sizes.widthCms, progress).toFixed(1)
+  const heightCm = lerp(0, sizes.heightCms, progress).toFixed(1)
 
   ctx.font = '20px Times New Roman'
   ctx.fillStyle = '#3c3c3c'
+
   ctx.textAlign = 'center'
-  const widthCm = lerp(0, sizes.widthCms, perc).toFixed(1)
-  const heightCm = lerp(0, sizes.heightCms, perc).toFixed(1)
   ctx.fillText(`${widthCm} cms`, cnv.width / 2, height - 20)
+  
   ctx.textAlign = 'left'
   ctx.fillText(`${heightCm} cms`, cnv.width / 2 - width / 2 + 20, height / 2 + 10)
 }
 
-// function clamp(a, min = 0, max = 1) {
-//   return Math.min(max, Math.max(min, a))
-// }
-
-function lerp(x, y, perc) {
-  return x * (1 - perc) + y * perc
+function lerp(x, y, progress) {
+  return x * (1 - progress) + y * progress
 }

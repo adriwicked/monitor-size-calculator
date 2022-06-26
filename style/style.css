@@ -4,6 +4,12 @@ h1 {
 	margin-bottom: 3rem;
 }
 
+h2 {		
+	font-weight: 700;
+	font-size: 24px;
+	margin-bottom: 3rem;
+}
+
 input {
     border: none;
     border-bottom: solid 2px #3c3c3c;
@@ -17,7 +23,8 @@ input {
 button {        
     padding: 1rem 1.5rem;
     background: 0 0;
-    border: solid 2px #3c3c3c;    
+    border: solid 2px #3c3c3c;
+    color: #3c3c3c;
     font-family: "Times New Roman",Times,serif;
     font-size: 20px;
     font-weight: 700;
@@ -67,4 +74,17 @@ button:hover {
 
 #cnv {
     margin-top: 1rem;
+}
+
+.formula {
+    width: 100%;
+}
+
+.credits {
+    margin: 1em 0 1em 0;
+}
+
+.credits a {
+    text-decoration: none;
+    color: #3c3c3c;
 }
