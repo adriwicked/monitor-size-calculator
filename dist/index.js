@@ -52,8 +52,9 @@ function setInputNumOnly(input) {
 
 function initCanvasAndContext() {
   cnv = document.getElementById('cnv')
-  cnv.width = 600
-  cnv.height = 400
+  const cnvContainer = document.getElementById('canvas-container')
+  cnv.width = cnvContainer.offsetWidth < 600 ? cnvContainer.offsetWidth : 600
+  cnv.height = cnv.width * 0.67
   ctx = cnv.getContext('2d')
 }
 
